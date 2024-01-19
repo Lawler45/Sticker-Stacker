@@ -52,6 +52,8 @@ function moveLeft(currentRow) {
   currentRow.push(0);
 }
 
+//game logic and controls
+
 function moveBar() {
   const currentRow = gridMatrix[currentRowIndex];
 
@@ -72,3 +74,11 @@ function moveBar() {
   }
 }
 
+draw();
+//moves the bar
+function main() {
+  moveBar();
+  draw();
+}
+
+const gameInterval = setInterval(main, 600);
