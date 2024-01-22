@@ -44,6 +44,13 @@ function draw() {
 }
 
 // Game logic and controls
+function checkWin() {
+  if (currentRowIndex === 0) {
+    isGameOver = true;
+    clearInterval(gameInterval);
+  }
+}
+
 function checkLost() {
   const currentRow = gridMatrix[currentRowIndex];
   const prevRow = gridMatrix[currentRowIndex + 1];
@@ -55,6 +62,10 @@ function checkLost() {
       currentRow[i] = 0;
       barSize--;
     }
+    if (barSize === 0) {
+      isGameOver = true;
+      clearInterval(gameInterval);
+    }
   }
 }
 
@@ -64,8 +75,11 @@ function updateScore() {
 }
 
 function onStack() {
+  checkWin();
   checkLost();
   updateScore();
+
+  if (isGameOver) return;
 
   currentRowIndex--;
   barDirection = "right";
