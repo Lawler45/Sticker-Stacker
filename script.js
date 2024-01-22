@@ -88,9 +88,10 @@ function updateScore() {
 function onStack() {
   checkWin();
   checkLost();
-  updateScore();
 
   if (isGameOver) return;
+
+  updateScore();
 
   currentRowIndex--;
   barDirection = "right";
