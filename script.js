@@ -44,7 +44,14 @@ function draw() {
 }
 
 // Game logic and controls
+
+function updateScore() {
+  score += barSize;
+  scoreCounter.innerText = score.toString().padStart(5, 0);
+}
+
 function onStack() {
+  updateScore();
   currentRowIndex--;
   barDirection = "right";
 
