@@ -44,10 +44,20 @@ function draw() {
 }
 
 // Game logic and controls
+function endGame(isVictory) {
+  if (isVictory) {
+    endGameText.innerHTML = "YOU<br>WON!";
+    endGameScreen.classList.add("win");
+  }
+
+  endGameScreen.classList.remove("hidden");
+}
+
 function checkWin() {
   if (currentRowIndex === 0) {
     isGameOver = true;
     clearInterval(gameInterval);
+    endGame(true);
   }
 }
 
@@ -65,6 +75,7 @@ function checkLost() {
     if (barSize === 0) {
       isGameOver = true;
       clearInterval(gameInterval);
+      endGame(false);
     }
   }
 }
@@ -120,6 +131,10 @@ function moveBar() {
     }
   }
 }
+
+function onPlayAgain() {
+  location.reload();
+}
 // Initial load of screen
 draw();
 
@@ -131,4 +146,5 @@ function main() {
 
 // Events
 stackBtn.addEventListener("click", onStack);
+playAgainBtn.addEventListener("click", onPlayAgain);
 const gameInterval = setInterval(main, 600);
