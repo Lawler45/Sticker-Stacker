@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "."
+	},
+	{
+		"path": "../../../Downloads/web-platform-4533zi/images"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "Sticker-Stacker"
+  }
+}

@@ -1,5 +1,5 @@
 const grid = document.querySelector(".grid");
-const stack = document.querySelector(".stack");
+const stackBtn = document.querySelector(".stack");
 const scoreCounter = document.querySelector(".score-counter");
 const endGameScreen = document.querySelector(".end-game-screen");
 const endGameText = document.querySelector(".end-game-text");
@@ -22,7 +22,7 @@ const gridMatrix = [
 //game tracking variables
 let currentRowIndex = gridMatrix.length - 1;
 let barDirection = "right";
-let varSize = 3;
+let barSize = 3;
 let isGameOver = false;
 let score = 0;
 
@@ -42,6 +42,19 @@ function draw() {
     });
   });
 }
+
+// Game logic and controls
+function onStack() {
+  currentRowIndex--;
+  barDirection = "right";
+
+  for (let i = 0; i < barSize; i++) {
+    gridMatrix[currentRowIndex][i] = 1;
+  }
+
+  draw();
+}
+
 function moveRight(currentRow) {
   currentRow.pop();
   currentRow.unshift(0);
@@ -51,8 +64,6 @@ function moveLeft(currentRow) {
   currentRow.shift();
   currentRow.push(0);
 }
-
-//game logic and controls
 
 function moveBar() {
   const currentRow = gridMatrix[currentRowIndex];
@@ -73,12 +84,15 @@ function moveBar() {
     }
   }
 }
-
+// Initial load of screen
 draw();
-//moves the bar
+
+// Moves the bar automatically
 function main() {
   moveBar();
   draw();
 }
 
+// Events
+stackBtn.addEventListener("click", onStack);
 const gameInterval = setInterval(main, 600);
