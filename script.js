@@ -44,6 +44,19 @@ function draw() {
 }
 
 // Game logic and controls
+function checkLost() {
+  const currentRow = gridMatrix[currentRowIndex];
+  const prevRow = gridMatrix[currentRowIndex + 1];
+
+  if (!prevRow) return;
+
+  for (let i = 0; i < currentRow.length; i++) {
+    if (currentRow[i] === 1 && prevRow[i] === 0) {
+      currentRow[i] = 0;
+      barSize--;
+    }
+  }
+}
 
 function updateScore() {
   score += barSize;
@@ -51,7 +64,9 @@ function updateScore() {
 }
 
 function onStack() {
+  checkLost();
   updateScore();
+
   currentRowIndex--;
   barDirection = "right";
 
